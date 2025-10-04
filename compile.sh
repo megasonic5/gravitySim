@@ -1,5 +1,6 @@
 if g++ main.cpp -o main -lGL -lglfw; then
-    ./main
+    mv main Linux
+    ./Linux/main
 else
     echo "Error"
 fi
