@@ -16,10 +16,13 @@ int main() {
     float radius = 50.0f;
     int res = 100;
     std::vector<float> position = {400.0f, 300.0f};
+    std::vector<float> velocity = {0.0f, 0.0f};
     while (!glfwWindowShouldClose(window)) {
         glClear(GL_COLOR_BUFFER_BIT);
         DrawCircle(position[0], position[1], 50.0f, 50);
-        position[1] -= 1.0f;
+        position[0] += velocity[0];
+        position[1] += velocity[1];
+        velocity[1] += -9.81f / 20.0f;
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
