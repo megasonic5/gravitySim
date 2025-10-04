@@ -23,6 +23,12 @@ int main() {
         position[0] += velocity[0];
         position[1] += velocity[1];
         velocity[1] += -9.81f / 20.0f;
+        if (position[1] < 0 || position[1] > screenHeight) {
+            velocity[1] *= -0.95;
+        }
+        if (position[0] < 0 || position[0] > screenWidth) {
+            velocity[0] *= -0.95;
+        } 
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
