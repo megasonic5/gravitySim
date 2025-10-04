@@ -6,6 +6,7 @@ float screenWidth = 800.0f;
 float screenHeight = 600.0f;
 
 GLFWwindow* StartGLFW();
+void DrawCircle(float centerX, float centerY, float radius, int res);
 
 int main() {
     GLFWwindow* window = StartGLFW();
@@ -15,15 +16,7 @@ int main() {
     int res = 100;
     while (!glfwWindowShouldClose(window)) {
         glClear(GL_COLOR_BUFFER_BIT);
-        glBegin(GL_TRIANGLE_FAN);
-        glVertex2d(centerX, centerY);
-        for (int i=0;i<=res;++i) {
-            float angle = 2.0f * 3.141592653589 * (static_cast<float>(i) / res);
-            float x = centerX + cos(angle) * radius;
-            float y = centerY + sin(angle) * radius;
-            glVertex2d(x, y);
-        }
-        glEnd();
+        DrawCircle(400.0f, 300.0f, 50.0f, 50);
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
@@ -42,4 +35,16 @@ GLFWwindow* StartGLFW() {
     glfwMakeContextCurrent(window);
     glOrtho(0, screenWidth, 0, screenHeight, -1, 1);
     return window;
+}
+
+void DrawCircle(float centerX, float centerY, float radius, int res) {
+    glBegin(GL_TRIANGLE_FAN);
+    glVertex2d(centerX, centerY);
+    for (int i=0;i<=res;++i) {
+        float angle = 2.0f * 3.141592653589 * (static_cast<float>(i) / res);
+        float x = centerX + cos(angle) * radius;
+        float y = centerY + sin(angle) * radius;
+        glVertex2d(x, y);
+    }
+    glEnd();
 }
